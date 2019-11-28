@@ -8,6 +8,8 @@ import (
 	"strconv"
 )
 
+// Function Conf () provides the SDS and HTTP conf data of package
+// 'github.com/loc36-svc/svc1'.
 func Conf () (sds, http map[string]string, funcErr error) {
 	conf, errX := viper.NewFileViper (conf_ConfFileName, "yaml")
 	if errX != nil {
@@ -57,12 +59,14 @@ func Conf () (sds, http map[string]string, funcErr error) {
 	
 	okA, errA := afero.Exists (afero.NewOsFs (), tempSdsPubK)
 	if errA != nil {
-		funcErr = err.New ("Conf data 'sds.pub_key': Unable to confirm existence of file.", nil, nil, errA)
+		funcErr = err.New ("Conf data 'sds.pub_key': Unable to confirm " +
+			"existence of file.", nil, nil, errA)
 		return
 	}
 
 	if okA == false {
-		funcErr = err.New ("Conf data 'sds.pub_key': File does not exist.", nil, nil)
+		funcErr = err.New ("Conf data 'sds.pub_key': File does not exist.",
+			nil, nil)
 		return
 	}
 
@@ -101,12 +105,14 @@ func Conf () (sds, http map[string]string, funcErr error) {
 	
 	okB, errB := afero.Exists (afero.NewOsFs (), tempHttpTlsKey)
 	if errB != nil {
-		funcErr = err.New ("Conf data 'http.tls_key': Unable to confirm existence of file.", nil, nil, errB)
+		funcErr = err.New ("Conf data 'http.tls_key': Unable to confirm " +
+			"existence of file.", nil, nil, errB)
 		return
 	}
 
 	if okB == false {
-		funcErr = err.New ("Conf data 'http.tls_key': File does not exist.", nil, nil)
+		funcErr = err.New ("Conf data 'http.tls_key': File does not exist.", nil,
+			nil)
 		return
 	}
 
@@ -117,12 +123,14 @@ func Conf () (sds, http map[string]string, funcErr error) {
 	
 	okC, errC := afero.Exists (afero.NewOsFs (), tempHttpTlsCrt)
 	if errC != nil {
-		funcErr = err.New ("Conf data 'http.tls_crt': Unable to confirm existence of file.", nil, nil, errC)
+		funcErr = err.New ("Conf data 'http.tls_crt': Unable to confirm " +
+			"existence of file.", nil, nil, errC)
 		return
 	}
 
 	if okC == false {
-		funcErr = err.New ("Conf data 'http.tls_crt': File does not exist.", nil, nil)
+		funcErr = err.New ("Conf data 'http.tls_crt': File does not exist.", nil,
+			nil)
 		return
 	}
 
@@ -131,15 +139,18 @@ func Conf () (sds, http map[string]string, funcErr error) {
 // part b4
 	tempHttpReadTmt, _ := strconv.Atoi (conf.GetString ("http.read_timeout"))
 	if tempHttpReadTmt < 1 || tempHttpReadTmt > 960 {
-		funcErr = err.New ("Conf data 'http.read_timeout': Invalid data.", nil, nil)
+		funcErr = err.New ("Conf data 'http.read_timeout': Invalid data.", nil,
+			nil)
 		return
 	}
 	http ["read_timeout"] = strconv.Itoa (tempHttpReadTmt)
 
 // part b5
-	tempHttpReadHeaderTmt, _ := strconv.Atoi (conf.GetString ("http.read_header_timeout"))
+	tempHttpReadHeaderTmt, _ := strconv.Atoi (conf.GetString (
+		"http.read_header_timeout"))
 	if tempHttpReadHeaderTmt < 1 || tempHttpReadHeaderTmt > 960 {
-		funcErr = err.New ("Conf data 'http.read_header_timeout': Invalid data.", nil, nil)
+		funcErr = err.New ("Conf data 'http.read_header_timeout': Invalid data.",
+			nil, nil)
 		return
 	}
 	http ["read_header_timeout"] = strconv.Itoa (tempHttpReadHeaderTmt)
@@ -147,7 +158,8 @@ func Conf () (sds, http map[string]string, funcErr error) {
 // part b6
 	tempHttpWrteTmt, _ := strconv.Atoi (conf.GetString ("http.wrte_timeout"))
 	if tempHttpWrteTmt < 1 || tempHttpWrteTmt > 960 {
-		funcErr = err.New ("Conf data 'http.wrte_timeout': Invalid data.", nil, nil)
+		funcErr = err.New ("Conf data 'http.wrte_timeout': Invalid data.", nil,
+			nil)
 		return
 	}
 	http ["wrte_timeout"] = strconv.Itoa (tempHttpWrteTmt)
@@ -155,7 +167,8 @@ func Conf () (sds, http map[string]string, funcErr error) {
 // part b7
 	tempHttpIdleTmt, _ := strconv.Atoi (conf.GetString ("http.idle_timeout"))
 	if tempHttpIdleTmt < 1 || tempHttpIdleTmt > 960 {
-		funcErr = err.New ("Conf data 'http.idle_timeout': Invalid data.", nil, nil)
+		funcErr = err.New ("Conf data 'http.idle_timeout': Invalid data.", nil,
+			nil)
 		return
 	}
 	http ["idle_timeout"] = strconv.Itoa (tempHttpIdleTmt)
