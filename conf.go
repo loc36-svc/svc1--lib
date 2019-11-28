@@ -11,7 +11,7 @@ import (
 func Conf () (sds, http map[string]string, funcErr error) {
 	conf, errX := viper.NewFileViper (conf_ConfFileName, "yaml")
 	if errX != nil {
-		funcErr = err.New ("Unable to load conf file.", nil, nil, errX)
+		funcErr = err.New ("Unable to load conf.", nil, nil, errX)
 		return
 	}
 	sds = map[string]string {}; http = map[string]string {}
@@ -82,7 +82,7 @@ func Conf () (sds, http map[string]string, funcErr error) {
 		funcErr = err.New ("Conf data 'http.net_addr': Invalid data.", nil, nil)
 		return
 	}
-	sds ["net_addr"] = tempHttpAddr
+	http ["net_addr"] = tempHttpAddr
 
 // part b1
 	tempHttpPort := conf.GetString ("http.net_port")
