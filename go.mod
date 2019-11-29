@@ -1,4 +1,4 @@
-module github.com/loc36-svc/svc1--lib
+module github.com/loc36-svc/svc1-http--lib
 
 go 1.13
 
@@ -7,4 +7,5 @@ require (
 	github.com/qamarian-lib/viper v0.2.0
 	github.com/spf13/afero v1.2.2
 	gopkg.in/asaskevich/govalidator.v9 v9.0.0-20180315120708-ccb8e960c48f
+	gopkg.in/qamarian-lib/str.v2 v2.0.0 // indirect
 )
